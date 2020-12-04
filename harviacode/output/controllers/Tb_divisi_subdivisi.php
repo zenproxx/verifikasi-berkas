@@ -1,0 +1,150 @@
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
+class Tb_divisi_subdivisi extends CI_Controller
+{
+    function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Tb_divisi_subdivisi_model');
+        $this->load->library('form_validation');        
+	$this->load->library('datatables');
+    }
+
+    public function index()
+    {
+        $this->load->view('tb_divisi_subdivisi/tb_divisi_subdivisi_list');
+    } 
+    
+    public function json() {
+        header('Content-Type: application/json');
+        echo $this->Tb_divisi_subdivisi_model->json();
+    }
+
+    public function read($id) 
+    {
+        $row = $this->Tb_divisi_subdivisi_model->get_by_id($id);
+        if ($row) {
+            $data = array(
+		'uniqid' => $row->uniqid,
+		'id' => $row->id,
+		'id_parent' => $row->id_parent,
+		'nama_divisi' => $row->nama_divisi,
+		'jenis' => $row->jenis,
+	    );
+            $this->load->view('tb_divisi_subdivisi/tb_divisi_subdivisi_read', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('tb_divisi_subdivisi'));
+        }
+    }
+
+    public function create() 
+    {
+        $data = array(
+            'button' => 'Create',
+            'action' => site_url('tb_divisi_subdivisi/create_action'),
+	    'uniqid' => set_value('uniqid'),
+	    'id' => set_value('id'),
+	    'id_parent' => set_value('id_parent'),
+	    'nama_divisi' => set_value('nama_divisi'),
+	    'jenis' => set_value('jenis'),
+	);
+        $this->load->view('tb_divisi_subdivisi/tb_divisi_subdivisi_form', $data);
+    }
+    
+    public function create_action() 
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->create();
+        } else {
+            $data = array(
+		'id' => $this->input->post('id',TRUE),
+		'id_parent' => $this->input->post('id_parent',TRUE),
+		'nama_divisi' => $this->input->post('nama_divisi',TRUE),
+		'jenis' => $this->input->post('jenis',TRUE),
+	    );
+
+            $this->Tb_divisi_subdivisi_model->insert($data);
+            $this->session->set_flashdata('message', 'Create Record Success');
+            redirect(site_url('tb_divisi_subdivisi'));
+        }
+    }
+    
+    public function update($id) 
+    {
+        $row = $this->Tb_divisi_subdivisi_model->get_by_id($id);
+
+        if ($row) {
+            $data = array(
+                'button' => 'Update',
+                'action' => site_url('tb_divisi_subdivisi/update_action'),
+		'uniqid' => set_value('uniqid', $row->uniqid),
+		'id' => set_value('id', $row->id),
+		'id_parent' => set_value('id_parent', $row->id_parent),
+		'nama_divisi' => set_value('nama_divisi', $row->nama_divisi),
+		'jenis' => set_value('jenis', $row->jenis),
+	    );
+            $this->load->view('tb_divisi_subdivisi/tb_divisi_subdivisi_form', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('tb_divisi_subdivisi'));
+        }
+    }
+    
+    public function update_action() 
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->update($this->input->post('uniqid', TRUE));
+        } else {
+            $data = array(
+		'id' => $this->input->post('id',TRUE),
+		'id_parent' => $this->input->post('id_parent',TRUE),
+		'nama_divisi' => $this->input->post('nama_divisi',TRUE),
+		'jenis' => $this->input->post('jenis',TRUE),
+	    );
+
+            $this->Tb_divisi_subdivisi_model->update($this->input->post('uniqid', TRUE), $data);
+            $this->session->set_flashdata('message', 'Update Record Success');
+            redirect(site_url('tb_divisi_subdivisi'));
+        }
+    }
+    
+    public function delete($id) 
+    {
+        $row = $this->Tb_divisi_subdivisi_model->get_by_id($id);
+
+        if ($row) {
+            $this->Tb_divisi_subdivisi_model->delete($id);
+            $this->session->set_flashdata('message', 'Delete Record Success');
+            redirect(site_url('tb_divisi_subdivisi'));
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('tb_divisi_subdivisi'));
+        }
+    }
+
+    public function _rules() 
+    {
+	$this->form_validation->set_rules('id', 'id', 'trim|required');
+	$this->form_validation->set_rules('id_parent', 'id parent', 'trim|required');
+	$this->form_validation->set_rules('nama_divisi', 'nama divisi', 'trim|required');
+	$this->form_validation->set_rules('jenis', 'jenis', 'trim|required');
+
+	$this->form_validation->set_rules('uniqid', 'uniqid', 'trim');
+	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    }
+
+}
+
+/* End of file Tb_divisi_subdivisi.php */
+/* Location: ./application/controllers/Tb_divisi_subdivisi.php */
+/* Please DO NOT modify this information : */
+/* Generated by Harviacode Codeigniter CRUD Generator 2020-12-02 07:59:51 */
+/* http://harviacode.com */
