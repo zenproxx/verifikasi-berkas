@@ -36,14 +36,15 @@ body {
                 <div class="col-sm">
                     
                 <center><img width="100" height="130" src="<?php echo base_url('assets/img/logo-dark.png'); ?>" >
-                    <h3 style="color:white">Dinas Perumahan Kawasan Permukiman dan Penataan Ruang Kota Medan</h3>
+                    <h3 style="color:white; margin-bottom: 25px;">Dinas Perumahan Kawasan Permukiman dan Penataan Ruang Kota Medan</h3>
                 </center>
                 </div>
 				<div class="auth-box ">
 					<div class="left">
 						<div class="content">
 							<div class="header">
-                                <h1 >Sistem Informasi IMB</h1>
+								<img width="100" height="130" src="<?php echo base_url('assets/img/logo-dark.png');?>" >
+                                <h1 class="text-center">Sistem Informasi IMB</h1>
                                 <a class="btn btn-primary" href="auth" role="button">Mulai</a>
 							</div>
 							
@@ -53,8 +54,14 @@ body {
 						<div class="overlay"></div>
 						<div class="content text">
                             <div class="header">
-                                <h1>E-Arsip</h1>
-                                <a class="btn btn-primary" href="http://saindrive.saintekno.id/login" role="button">Mulai</a>
+                            	<center>
+
+                            		<img width="100" height="130" src="<?php echo base_url('assets/img/logo-dark.png');?>" >
+                            		<h1>E-Arsip</h1>
+                                	<a class="btn btn-danger" href="http://saindrive.saintekno.id/login" role="button">Mulai</a>
+                            		
+                            	</center>
+                                
 							</div>
 						</div>
 					</div>

@@ -30,33 +30,36 @@
 					<div class="left">
 						<div class="content">
 							<div class="header">
-								<p class="lead">Login to your account</p>
+								<p class="lead">Masuk ke akun anda</p>
 							</div>
 							<form class="form-auth-small" action="<?php echo site_url('auth/login'); ?>" method="post">
 								<div class="form-group">
 									<label for="signin-email" class="control-label sr-only">Username</label>
-									<input type="text" name="user" class="form-control" value="" placeholder="Your username" autofocus>
+									<input type="text" name="user" class="form-control" value="" placeholder="Username anda" autofocus>
 								</div>
 								<div class="form-group">
 									<label for="signin-password" class="control-label sr-only">Password</label>
-									<input type="password" name="pass" class="form-control" id="signin-password" value="" placeholder="Password">
+									<input type="password" name="pass" class="form-control" id="signin-password" value="" placeholder="Password anda">
 								</div>
 								<div class="form-group clearfix">
 									<label class="fancy-checkbox element-left">
 										<input type="checkbox">
-										<span>Remember me</span>
+										<span>Ingat saya</span>
 									</label>
 								</div>
-								<button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
+								<button type="submit" class="btn btn-primary btn-lg btn-block">Masuk</button>
 							</form>
 						</div>
 					</div>
 					<div class="right">
 						<div class="overlay"></div>
 						<div class="content text">
+							<center>
+							<img width="150" height="200" src="<?php echo base_url('assets/img/logo-dark.png'); ?>" >
 							<p>SISTEM INFORMASI IMB dan E-Arsip</p>
 							<p>Dinas Perumahan Kawasan Permukiman dan Penataan Ruang Kota Medan</p>
-							<img width="150" height="200" src="<?php echo base_url('assets/img/logo-dark.png'); ?>" >
+						</center>
+							
 <!-- 							<img width="150" height="200" src="<?php echo base_url('assets/img/rumah-kita.jpg'); ?>" > -->
 						</div>
 					</div>
